@@ -48,18 +48,6 @@ header p {
   line-height: 1.6; /* Improve readability */
 }
 
-/* Style SVG and other images inside timeline cards to be consistent */
-section img {
-  width: 250px !important;
-  height: 100px !important;
-  object-fit: cover; /* Fill the area, cropping if needed for photos */
-  background: #fff;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto 15px auto; /* Center and add space below */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04); /* Optional: subtle shadow for visibility */
-}
-
 /* Timeline Section Styles */
 section {
   display: flex;
@@ -70,56 +58,171 @@ section {
   justify-content: flex-start;
   align-items: stretch;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; /* Enable horizontal scrolling with scroll snap */
 }
 
+/* Timeline Card Styles - Intel Aesthetic */
 section > div {
-  background: #f7fafd;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  min-width: 280px;
-  max-width: 320px;
-  flex: 0 0 300px;
-  padding: 24px 18px 18px 18px;
+  background: #f7fafd; /* Light Intel blue background */
+  border-radius: 8px; /* Sharper corners */
+  box-shadow: 0 4px 20px rgba(0,113,197,0.13); /* Slightly stronger shadow */
+  min-width: 320px;
+  max-width: 370px;
+  flex: 0 0 340px;
+  padding: 32px 24px 24px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: 
+    transform 0.25s cubic-bezier(0.4,0.2,0.2,1),
+    box-shadow 0.25s cubic-bezier(0.4,0.2,0.2,1),
+    background 0.25s;
+  font-family: 'Roboto', Arial, sans-serif;
+  border: 1.5px solid #e0f0ff;
+  scroll-snap-align: start; /* Each card will snap to the start of the scroll area */
 }
 
-section > div:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 6px 24px rgba(0,113,197,0.12);
+/* Optional: add scroll-padding for better alignment */
+section > div {
+  scroll-margin-left: 1em;
+}
+
+section > div:hover,
+section > div:focus-within {
+  /* Slightly lift and scale the card on hover */
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 8px 32px 0 rgba(0,104,181,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  background: #f4faff;
+  z-index: 2;
+}
+
+section > div img {
+  /* Animate image slightly on hover for extra polish */
+  transition: box-shadow 0.25s, filter 0.25s;
+}
+
+section > div:hover img,
+section > div:focus-within img {
+  box-shadow: 0 4px 16px rgba(0,104,181,0.12);
+  filter: brightness(1.05) saturate(1.1);
 }
 
 section h2 {
   color: #0071c5;
   font-size: 1.3rem;
   margin: 0 0 4px 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 section h3 {
-  font-size: 1.1rem;
-  margin: 0 0 10px 0;
+  font-size: 1.08rem;
+  margin: 0 0 12px 0;
   color: #222;
+  font-weight: 500;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Make timeline card headers bold for better emphasis */
+section > div h2,
+section > div h3 {
+  font-weight: bold;
 }
 
 section p {
-  font-size: 1rem;
-  color: #333;
-  margin: 10px 0 0 0;
+  font-size: 1.01rem;
+  color: #2a2a2a;
+  margin: 12px 0 0 0;
   text-align: center;
+  line-height: 1.6;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
+/* Hide the description by default and reveal on hover */
+section > div p {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+  margin: 0;
+  padding: 0;
+}
+
+section > div:hover p {
+  max-height: 200px; /* Enough for 4-5 lines */
+  opacity: 1;
+  margin: 12px 0 0 0;
+  padding: 0 0 4px 0;
+}
+
+/* Ensure card stays same height on mobile (optional) */
 @media (max-width: 800px) {
+  section > div p {
+    max-height: 500px;
+    opacity: 1;
+    margin: 12px 0 0 0;
+    padding: 0 0 4px 0;
+  }
   section {
     flex-direction: column;
     align-items: center;
     gap: 32px;
     overflow-x: visible;
+    scroll-snap-type: y mandatory; /* On mobile, stack vertically and use vertical scroll snap */
   }
   section > div {
     min-width: 0;
     max-width: 95vw;
     width: 100%;
+    scroll-snap-align: start;
+    scroll-margin-top: 1em;
   }
+}
+
+/* Style SVG and other images inside timeline cards to be consistent */
+section img {
+  width: 300px !important;
+  height: 120px !important;
+  object-fit: cover;
+  background: #fff;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 15px auto;
+  box-shadow: 0 2px 8px rgba(0,113,197,0.06);
+  border: 1px solid #e0f0ff;
+}
+
+/* Footer Styles */
+footer, body > p:last-of-type {
+  background: #f7fafd;
+  color: #0071c5;
+  text-align: center;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1.05rem;
+  padding: 18px 0 16px 0;
+  margin: 0;
+  border-top: 2px solid #e0f0ff;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 800px) {
+  footer, body > p:last-of-type {
+    font-size: 0.98rem;
+    padding: 14px 0 12px 0;
+  }
+}
+
+/* Style the footer (the last <p> tag) to match the page and center it */
+section + p {
+  background: #e6f0fa; /* Light blue background */
+  color: #0068b5;      /* Intel blue text */
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 1.5em 0;
+  border-top: 3px solid #0068b5;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.03);
 }
