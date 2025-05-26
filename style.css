@@ -1,1 +1,61 @@
-/* Add your CSS here */
+/* Import a modern, clean font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Style for the hero section (header) */
+header {
+  /* Intel blue background */
+  background-color: #0071c5; /* Intel brand blue */
+  color: #fff; /* White text for contrast */
+  padding: 40px 0; /* Space above and below */
+  text-align: center; /* Center all content */
+  font-family: 'Roboto', Arial, sans-serif; /* Use modern font */
+}
+
+header img {
+  /* Logo styling */
+  width: 120px; /* Set logo size */
+  height: auto; /* Keep aspect ratio */
+  display: block; /* Make logo take its own line */
+  margin: 0 auto 10px auto; /* Center logo, less space below */
+}
+
+header h1 {
+  /* Main headline styling */
+  font-size: 2.5rem; /* Large text */
+  margin: 10px 0 15px 0; /* Space above and below */
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #fff; /* Add white underline */
+  display: inline-block; /* Underline only the text, not full width */
+  padding-bottom: 8px; /* Space between text and underline */
+  width: auto; /* Remove fixed width for better wrapping */
+  min-width: unset;
+  max-width: unset;
+  white-space: normal; /* Allow text to wrap */
+}
+
+/* Make the heading break into two lines on all screens */
+header h1 br {
+  display: block;
+}
+
+header p {
+  /* Subheading styling */
+  font-size: 1.2rem; /* Slightly larger text */
+  max-width: 500px; /* Limit width for readability */
+  margin: 30px auto 0 auto; /* Center horizontally, more space above */
+  color: #e0f0ff; /* Lighter blue for contrast */
+  line-height: 1.6; /* Improve readability */
+}
+
+/* Style SVG and other images inside timeline cards to be consistent */
+section img {
+  width: 250px !important;
+  height: 100px !important;
+  object-fit: cover; /* Fill the area, cropping if needed for photos */
+  background: #fff;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 15px auto; /* Center and add space below */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04); /* Optional: subtle shadow for visibility */
+}
