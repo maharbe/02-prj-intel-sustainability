@@ -59,3 +59,67 @@ section img {
   margin: 0 auto 15px auto; /* Center and add space below */
   box-shadow: 0 2px 8px rgba(0,0,0,0.04); /* Optional: subtle shadow for visibility */
 }
+
+/* Timeline Section Styles */
+section {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 24px;
+  padding: 32px 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  scroll-behavior: smooth;
+}
+
+section > div {
+  background: #f7fafd;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  min-width: 280px;
+  max-width: 320px;
+  flex: 0 0 300px;
+  padding: 24px 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+section > div:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(0,113,197,0.12);
+}
+
+section h2 {
+  color: #0071c5;
+  font-size: 1.3rem;
+  margin: 0 0 4px 0;
+}
+
+section h3 {
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+  color: #222;
+}
+
+section p {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  section {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    overflow-x: visible;
+  }
+  section > div {
+    min-width: 0;
+    max-width: 95vw;
+    width: 100%;
+  }
+}
